@@ -1,6 +1,6 @@
 import React from 'react';
 import { useDispatch } from 'react-redux';
-import { removeTodoActionCreator } from '../redux/actions/todoActions';
+import { removeTodoActionCreator, toggleTodoActionCreator } from '../redux/actions/todoActions';
 
 const TodoItem = ({ id, text, isCompleted }) => {
 
@@ -10,9 +10,13 @@ const TodoItem = ({ id, text, isCompleted }) => {
         dispatch(removeTodoActionCreator(id))
     }
 
+    function toggleTodo() {
+        dispatch(toggleTodoActionCreator(id))
+    }
+
   return (
     <div className='todo-item'>
-        <input type='checkbox' checked={isCompleted} />
+        <input type='checkbox' onChange={toggleTodo} checked={isCompleted} />
         <p> {text} </p>
         <button onClick={removeTodo}>x</button>
     </div>
